@@ -1,0 +1,21 @@
+{
+  "name": "axis_bank_hackathon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.1.4",
+    "bayes": "0.0.6",
+    "brain": "^0.7.0",
+    "google": "^2.1.0",
+    "request": "^2.79.0",
+    "underscore": "^1.8.3",
+    "unfluff": "^1.1.0",
+    "wikipedia-js": "0.0.6"
+  }
+}
