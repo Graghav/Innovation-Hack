@@ -1,0 +1,17 @@
+{
+  "name": "innovation_hack_web_app",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "raghav",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-webserver": "^0.9.1",
+    "yargs": "^3.31.0"
+  }
+}

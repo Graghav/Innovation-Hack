@@ -6,13 +6,16 @@ var bayes     = require('bayes');
 var brain     = require('brain');
 var extractor = require('../controllers/parser');
 
-var train_data  = data.slice(0, 2);
+var forex_test = _.filter(data, function(d){ return d.flag == "Forex"  });
+var non_forex_test = _.filter(data, function(d){ return d.flag != "Forex"  });
+
+var train_data  = _.union(forex_test.splice(0,10), non_forex_test.splice(0,10));
 
 var forex_topics      = [];
 var non_forex_topics  = [];
 
+// Asynchronously fetch the data of the test company from the extractor
 async.each(train_data, function(c, cb){
-
   extractor.getDataOfCompany(c.customer, function(d){
     if(c.flag == "Forex") {
       forex_topics.push(_.flatten(d));
@@ -24,8 +27,7 @@ async.each(train_data, function(c, cb){
   });
 
 }, function(err){
-
-    // Once the topics are fetched, flatten & sort by probability
+    // Once the collections are fetched, flatten & sort by probability
     var forex_sorted = _.chain(forex_topics)
                         .flatten()
                         .sortBy(function(topic){
@@ -42,14 +44,20 @@ async.each(train_data, function(c, cb){
                         .reverse()
                         .value();
 
-    // Train the Bayes Classifier with the data
+    // Create a Bayes Classifier
     var classifier = bayes();
 
+    // Train the Classifier with Positive / Forex data
     _.each(forex_sorted, function(d){
       classifier.learn(d.term, 'forex');
     });
 
-    // Serialize the data
+    // Train the Classifier with Negative / Non-Forex data
+    _.each(non_forex_sorted, function(d){
+      classifier.learn(d.term, 'non-forex');
+    });
+
+    // Serialize the data & store the model
     var stateJson = classifier.toJson()
     fs.writeFile('model.json', stateJson, function(){
       console.log("MODELED")

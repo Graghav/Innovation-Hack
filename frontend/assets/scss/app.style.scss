@@ -1,0 +1,32 @@
+@import "partials/_colors";
+@import "partials/_typography";
+@import "partials/_navbar";
+@import "partials/_content";
+
+.progress {
+  margin: 0;
+}
+
+/* Icons */
+.icon {
+  font-size: 18px !important;
+  width: 2.5rem !important;
+  margin-right: 10px !important;
+  text-align: center !important;
+}
+
+/* Cards */
+.card {
+  .card-title {
+    font-size: 18px;
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+}
+
+/* Chart JS */
+.chart-container {
+  ul {
+    margin-top: 20px;
+  }
+}

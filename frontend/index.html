@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="innovation_hack" ng-strict-di>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <title>{{title}}</title>
+    <base href="/">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="/bower_components/material/material.min.css" rel="stylesheet">
+    <link href="/bower_components/angular-chart.js/dist/angular-chart.css" rel="stylesheet">
+    <link href="assets/css/app.style.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div ng-include="'app/layout/shell/shell.html'"></div>
+
+  <!-- inject-vendor:js -->
+  <script src="/bower_components/jquery/dist/jquery.js"></script>
+  <script src="/bower_components/angular/angular.js"></script>
+  <script src="/bower_components/material/material.min.js"></script>
+  <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="/bower_components/Chart.js/Chart.min.js"></script>
+  <script src="/bower_components/angular-chart.js/dist/angular-chart.js"></script>
+
+  <!-- endinject -->
+
+  <!-- inject:js -->
+  <script src="/app/app.module.js"></script>
+
+  <script src="/app/blocks/logger/logger.module.js"></script>
+  <script src="/app/blocks/logger/logger.service.js"></script>
+  <script src="/app/blocks/router/router.module.js"></script>
+  <script src="/app/blocks/router/router.provider.js"></script>
+
+  <!-- Core Modules -->
+  <script src="/app/core/core.module.js"></script>
+  <script src="/app/core/constant.js"></script>
+  <script src="/app/core/config.js"></script>
+  <script src="/app/core/run.js"></script>
+  <script src="/app/core/base64.js"></script>
+
+  <!-- Layout -->
+  <script src="/app/layout/layout.module.js"></script>
+  <script src="/app/layout/shell/shell.controller.js"></script>
+  <script src="/app/layout/navbar/navbar.directive.js"></script>
+  <script src="/app/layout/sidenav/sidenav.directive.js"></script>
+
+  <!-- Auth -->
+  <script src="/app/auth/auth.module.js"></script>
+  <script src="/app/auth/auth.service.js"></script>
+
+  <!-- Cache -->
+  <script src="/app/cache/cache.module.js"></script>
+  <script src="/app/cache/cache.service.js"></script>
+
+  <!-- Login -->
+  <script src="/app/login/login.module.js"></script>
+  <script src="/app/login/login.config.js"></script>
+  <script src="/app/login/login.service.js"></script>
+  <script src="/app/login/login.controller.js"></script>
+
+  <!-- Dashboard -->
+  <script src="/app/dashboard/dashboard.module.js"></script>
+  <script src="/app/dashboard/dashboard.config.js"></script>
+  <script src="/app/dashboard/dashboard.controller.js"></script>
+
+
+  <!-- endinject -->
+
+</body>
+
+</html>

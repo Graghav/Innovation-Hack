@@ -8,20 +8,7 @@ var htmlToText  = require('html-to-text');
 var async       = require('async');
 var lda         = require('lda');
 
-
-function extractFromWikipedia(query, callback) {
-  var options = {query: query, format: "html", summaryOnly: false};
-  wikipedia.searchArticle(options, function(err, htmlWikiText){
-    if(err){
-      console.log("An error occurred[query=%s, error=%s]", query, err);
-      return;
-    }
-    else {
-      callback(htmlWikiText);
-    }
-  });
-}
-
+// Extract the result links of the query from Google
 function extractFromGoogle(query, callback) {
   google.resultsPerPage = 10;
   google(query, function(err, res){
@@ -39,6 +26,22 @@ function extractFromGoogle(query, callback) {
   });
 }
 
+// Extract the result content of query from Wikipedia
+function extractFromWikipedia(query, callback) {
+  var options = {query: query, format: "html", summaryOnly: false};
+  wikipedia.searchArticle(options, function(err, htmlWikiText){
+    if(err){
+      console.log("An error occurred[query=%s, error=%s]", query, err);
+      return;
+    }
+    else {
+      callback(htmlWikiText);
+    }
+  });
+}
+
+
+// Extract the HTML content for the URL sent
 function extractContentFromUrl(link, callback) {
   request(link, function (error, response, body) {
     if (!error && response.statusCode == 200) {
@@ -50,6 +53,7 @@ function extractContentFromUrl(link, callback) {
   })
 }
 
+// Parse the content from HTML
 function parseHTML(html) {
   return extractor(html);
 }
@@ -58,6 +62,7 @@ function htmlToText(html) {
   return htmlToText.fromString(html);
 }
 
+// Use LDA to extract topics from the document collections
 function extractTopics(content) {
   var docs = content.match( /[^\.!\?]+[\.!\?]+/g );
   return lda(docs, 5, 5);
