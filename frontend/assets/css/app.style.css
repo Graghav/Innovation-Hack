@@ -1,3 +1,7 @@
+body {
+  background: #FAFAFA;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Roboto";
   font-weight: 300; }
@@ -5,6 +9,10 @@ h1, h2, h3, h4, h5, h6 {
 nav {
   padding-right: 15px;
   padding-left: 15px; }
+
+nav .brand-logo {
+  font-size: 1.5rem;
+}
 
 .side-nav.fixed {
   z-index: 10; }
@@ -38,3 +46,31 @@ nav {
 /* Chart JS */
 .chart-container ul {
   margin-top: 20px; }
+
+.search-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.search-wrapper {
+  margin-top: 30px;
+}
+#search {
+  margin-bottom: 0;
+  width: 97.5%;
+  padding-left: 10px;
+  border: none;
+}
+
+.valign-wrapper {
+  transition: all 0.5s;
+}
+
+input:not([type]):focus:not([readonly]) {
+  box-shadow: 0 1px 0 0 #ae275f;
+}
+
+.move-top {
+  height: 180px !important;
+}

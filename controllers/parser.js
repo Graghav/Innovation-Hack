@@ -14,7 +14,7 @@ function extractFromGoogle(query, callback) {
   google(query, function(err, res){
     if (err) {
       console.error(err)
-      return;
+      callback(null)
     }
     else {
       var links =  _.map(res.links, function(link){
@@ -65,7 +65,32 @@ function htmlToText(html) {
 // Use LDA to extract topics from the document collections
 function extractTopics(content) {
   var docs = content.match( /[^\.!\?]+[\.!\?]+/g );
-  return lda(docs, 5, 5);
+  return lda(docs, 5, 10);
+}
+
+exports.getDataForTraining = function(company, callback) {
+  extractFromGoogle(company, function(urls){
+    var content = "";
+    var tmp = "";
+    // Iterate through the url & fetch the content of the url
+    async.each(urls, function(url, cb){
+      if(url) {
+        extractContentFromUrl(url, function(c){
+          tmp = htmlToText.fromString(c);
+          content += tmp;
+          cb();
+        });
+      }
+      else {
+        cb();
+      }
+    }, function(err){
+      // Once all the data are fetched, perform topic modelling on the data
+      console.log("MODELING TOPICS");
+      callback(extractTopics(content))
+    });
+  });
+
 }
 
 exports.getDataOfCompany = function(company, callback) {
@@ -86,9 +111,18 @@ exports.getDataOfCompany = function(company, callback) {
         cb();
       }
     }, function(err){
-      // Once all the data are fetched, perform topic modelling on the data
-      console.log("MODELING TOPICS");
-      callback(extractTopics(content))
+      // Extract from Wikipedia
+      extractFromWikipedia(company, function(data){
+        var wiki = htmlToText.fromString(data);
+        // Once all the data are fetched, perform topic modelling on the data
+        var topics = extractTopics(content);
+        callback({
+          wiki   : wiki,
+          topics : topics,
+          links  : urls
+        })
+      })
+
     });
   });
 

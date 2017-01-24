@@ -9,14 +9,14 @@ var extractor = require('../controllers/parser');
 var forex_test = _.filter(data, function(d){ return d.flag == "Forex"  });
 var non_forex_test = _.filter(data, function(d){ return d.flag != "Forex"  });
 
-var train_data  = _.union(forex_test.splice(0,10), non_forex_test.splice(0,10));
+var train_data  = _.union(forex_test, non_forex_test);
 
 var forex_topics      = [];
 var non_forex_topics  = [];
 
 // Asynchronously fetch the data of the test company from the extractor
 async.each(train_data, function(c, cb){
-  extractor.getDataOfCompany(c.customer, function(d){
+  extractor.getDataForTraining(c.customer, function(d){
     if(c.flag == "Forex") {
       forex_topics.push(_.flatten(d));
     }
