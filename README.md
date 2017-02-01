@@ -16,6 +16,10 @@ and go to http://localhost:2000
 
 ![Architecture](assets/architecture.png?raw=true)
 
+### Demo
+
+http://139.59.12.216:2000
+
 ### Screenshots
 
 ![snap1](assets/snap_1.png?raw=true)
