@@ -10,15 +10,15 @@ Identify Which Company / Business would require Forex Services
 $ node app.js
 ```
 
+### Demo
+
+http://139.59.12.216:2000
+
 and go to http://localhost:2000
 
 ### Architecture
 
 ![Architecture](assets/architecture.png?raw=true)
-
-### Demo
-
-http://139.59.12.216:2000
 
 ### Screenshots
 
